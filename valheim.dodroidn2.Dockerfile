@@ -31,7 +31,6 @@ RUN make install
 # Install steamcmd and download the valheim server:
 WORKDIR /root/steam
 RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
-# RUN export DEBUGGER="/usr/local/bin/box86"
 ENV DEBUGGER "/usr/local/bin/box86"
 RUN ./steamcmd.sh +@sSteamCmdForcePlatformType linux +login anonymous +force_install_dir /root/valheim_server +app_update 896660 validate +quit
 

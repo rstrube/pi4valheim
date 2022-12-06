@@ -22,10 +22,10 @@ RUN apt install -y \
 
 # Install the box86 to emulate x86 platform (for steamcmd cliente)
 WORKDIR /root
-RUN git clone https://github.com/ptitSeb/box86.git --single-branch --branch $(git ls-remote --tags --refs https://github.com/ptitSeb/box86.git | tail -n1 | cut -d/ -f3)
+RUN git clone https://github.com/ptitSeb/box86.git
 WORKDIR /root/box86/build
-RUN cmake .. -DRPI4ARM64=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo
-RUN make -j4; 
+RUN cmake .. -DODROIDN2=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo
+RUN make -j6;
 RUN make install
 
 # Install steamcmd and download the valheim server:
@@ -36,10 +36,10 @@ RUN ./steamcmd.sh +@sSteamCmdForcePlatformType linux +login anonymous +force_ins
 
 ## Box64 installation
 WORKDIR /root
-RUN git clone https://github.com/ptitSeb/box64.git --single-branch --branch $(git ls-remote --tags --refs https://github.com/ptitSeb/box64.git | tail -n1 | cut -d/ -f3)
+RUN git clone https://github.com/ptitSeb/box64.git
 WORKDIR /root/box64/build
-RUN cmake .. -DRPI4ARM64=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo
-RUN make -j4; 
+RUN cmake .. -DODROIDN2=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo
+RUN make -j6;
 RUN make install
 
 # Cleaning the image
